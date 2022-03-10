@@ -1,0 +1,27 @@
+{
+	"host":"localhost",
+	"port":3306,
+	"admin":"anjula",
+	"adminpassword":"chaabiKhola",
+	"user":"grace@localhost",
+	"userpassword":"fAemmjm6",
+	"dropUser":true,
+	"debug":true,
+	"database":"catdb",
+	"tables":[
+		{
+			"tableName":"cat",
+			"columns":[
+				"number integer not null primary key",
+				"name varchar(12) not null",
+				"yearOfBirth integer not null",
+				"length integer not null",
+				"weightKg integer not null"
+			],
+			"data":[
+				[2,"Fluffy", 2011, 35, 3],
+				[5,"Puma", 2018, 50, 7 ]
+			]
+		}
+	]
+}
