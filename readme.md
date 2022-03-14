@@ -57,3 +57,52 @@ write all the sqlstaement for getAll, getOne, insert,delete and update.
 ```
 
 #### dataStoragelayer.js
+
+##### getAll
+
+```
+sh
+
+getAll() {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const result = await this.db.doQuery(getAllSql);
+        resolve(result.queryResult);
+      } catch (err) {
+        console.log(err);
+        reject(MESSAGES.PROGRAM_ERROR());
+      }
+    });
+  }
+```
+
+##### getOne
+
+```sh
+
+getOne(number) {
+return new Promise(async (resolve, reject) => {
+try {
+const result = this.db.doQuery(getSql,number;
+if (result.queryResult.length > 0) {
+          resolve(result.queryResult[0]);
+        } else {
+          resolve(MESSAGES.NOT_FOUND(PRIMARY_KEY, number));
+        }
+} catch (err) {
+console.log(err)
+}
+});
+}
+```
+
+#### layerTest.js
+
+If you want to make sure it is working well make testLayer and test all crud operations.
+
+```sh
+const storage = new Datastorage();
+storage.get(2).then(console.log).catch(console.log);
+storage.getAll().then(console.log).catch(console.log);
+storage.remove(2).then(console.log).catch(console.log);
+```

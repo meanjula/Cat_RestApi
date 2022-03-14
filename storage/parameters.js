@@ -8,7 +8,6 @@ const toArrayInsert = (cat) => [
   +cat.weightKg,
 ];
 
-//returns for example: [100,'abc','laptop','X1Z',23]
 const toArrayUpdate = (cat) => [
   cat.name,
   +cat.yearOfBirth,
