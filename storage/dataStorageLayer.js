@@ -64,4 +64,48 @@ module.exports = class DataStorage {
       }
     });
   }
+  insert(catData) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await this.db.doQuery(insertSql, toArrayInsert(catData));
+        resolve(MESSAGES.INSERT_OK(PRIMARY_KEY, catData[PRIMARY_KEY]));
+      } catch (err) {
+        reject(MESSAGES.NOT_INSERTED());
+      }
+    });
+  }
+  update(number, data) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        if (number && data) {
+          if (data[PRIMARY_KEY] != number) {
+            reject(MESSAGES.KEYS_DO_NOT_MATCH(number, data[PRIMARY_KEY]));
+          } else {
+            const resultGet = await this.db.doQuery(getSql, [number]);
+            //if object exists resultGet.queryResult.length=1 else 0
+            if (resultGet.queryResult.length > 0) {
+              const result = await this.db.doQuery(
+                updateSql,
+                toArrayUpdate(data)
+              );
+              if (result.queryResult.rowsChanged === 0) {
+                resolve(MESSAGES.NOT_UPDATED());
+              } else {
+                resolve(MESSAGES.UPDATE_OK(PRIMARY_KEY, data[PRIMARY_KEY]));
+              }
+            } else {
+              this.insert(data)
+                .then((status) => resolve(status))
+                .catch((err) => reject(err));
+            }
+          }
+        } else {
+          reject(MESSAGES.NOT_UPDATED());
+        }
+      } catch (err) {
+        console.log(err);
+        reject(MESSAGES.PROGRAM_ERROR());
+      }
+    });
+  }
 };
