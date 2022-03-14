@@ -56,4 +56,4 @@ write all the sqlstaement for getAll, getOne, insert,delete and update.
 
 ```
 
-#### databse
+#### dataStoragelayer.js
