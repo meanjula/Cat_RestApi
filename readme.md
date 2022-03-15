@@ -106,3 +106,7 @@ storage.get(2).then(console.log).catch(console.log);
 storage.getAll().then(console.log).catch(console.log);
 storage.remove(2).then(console.log).catch(console.log);
 ```
+
+#### IndexRest.js
+
+create a rest server with express and assign the end points for all get , remove, put and post action. Put your server to listen mode.

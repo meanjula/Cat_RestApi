@@ -23,7 +23,7 @@ const server = http.createServer(app);
 app.use(cors());
 app.use(express.json());
 
-app.get("/api/cats/", (req, res) =>
+app.get("/api/cats", (req, res) =>
   storage
     .getAll()
     .then((result) => res.json(result))
