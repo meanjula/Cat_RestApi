@@ -32,7 +32,7 @@ app.get("/api/cats", (req, res) =>
 
 app.get("/api/cats/:number", (req, res) =>
   storage
-    .getOne(req.params.number)
+    .get(req.params.number)
     .then((result) => res.json(result))
     .catch((err) => res.json(err))
 );
@@ -46,6 +46,7 @@ app.delete("/api/cats/:number", (req, res) =>
 
 app.post("/api/cats", (req, res) => {
   const cat = req.body;
+  console.log(cat);
   storage
     .insert(cat)
     .then((result) => res.json(result))
