@@ -1,7 +1,13 @@
 # CATSPA
 
 - Create a single-page web application. Use fetch to manipulate data.
-  Create the following operations:
+
+```sh
+- npm install node-fetch express
+```
+
+Create the following operations:
+
 - get all
 - get one
 - insert
